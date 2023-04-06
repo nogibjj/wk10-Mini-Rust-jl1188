@@ -1,4 +1,4 @@
-pub fn is_match(mut s: String, mut p: String) -> bool {
+pub fn is_match(s: String, p: String) -> bool {
     fn rec(
         memo: &mut Vec<Vec<Option<bool>>>,
         s: &Vec<char>,
@@ -11,7 +11,7 @@ pub fn is_match(mut s: String, mut p: String) -> bool {
         }
         let j = j as usize;
         let i = i as usize;
-        if let None = memo[i][j] {
+        if memo[i][j].is_none() {
             memo[i][j] = Some(match p[j] {
                 '*' => {
                     rec(memo, s, p, i as i32 - 1, j as i32)

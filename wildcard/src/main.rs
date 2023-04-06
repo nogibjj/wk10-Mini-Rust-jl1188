@@ -16,20 +16,18 @@ enum Commands {
     #[clap(version = "1.0", author = "Selina Liu")]
     Match {
         #[clap(short, long)]
-        string1: String,
-        string2: String,
+        s: String,
+        #[clap(short, long)]
+        p: String,
     },
 }
 
 fn main() {
     let args = Cli::parse();
     match args.command {
-        Some(Commands::Match { string1, string2 }) => {
-            let result = wildcard::is_match(string1, string2);
-            println!(
-                "Given strings match result: {}",
-                result
-            );
+        Some(Commands::Match { s, p }) => {
+            let result = wildcard::is_match(s, p);
+            println!("Given strings match result: {}", result);
         }
         None => println!("No subcommand was used"),
     }
